@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<title>YOAV WEBSITE</title>
+</head>
+<body class="container">
+<center><h1>
+  	CHOCO YOAV
+  <small class="text-muted">Chocos made with love</small>
+</h1>
+</center>
+
+	<h2>BEST RANDOM CHOCO</h2>
+	<p>
+	<a href="/product/{{random_chock.id}}"><b>{{random_chock.name}}</b>: {{random_chock.price}}
+	<img src="{{random_chock.img_url}}" alt="{{random_chock.name}}" style="height:300px;"></a>
+ 	</p>
+
+
+
+	<h2>ALL</h2>
+	<p>
+	<i>All our chocos!</i>
+	<div class="row row-cols-1 row-cols-md-3">
+	{%for product in all_products%}
+  <div class="col mb-4">
+    <div class="card">
+     <a href="/product/{{product.id}}"> <img src="{{product.img_url}}" class="card-img-top" alt="{{product.name}}" style="height:600px;">
+     </a>
+      <div class="card-body">
+        <a href="/product/{{product.id}}"><h5 class="card-title">{{product.name.title()}} </a>{%if product.on_sale%}
+			<b style="color: red">ON SALE!</b>
+
+			{%endif%}</h5>
+			{%if product.on_sale%}
+			<p class="card-text">{{product.description}}.</p><p><del>{{product.price}}</del> {{product.price -2}} shekels</p>
+			{%endif%}
+			{%if product.on_sale==False%}
+        	<p class="card-text">{{product.description}}.</p><p>{{product.price}} shekels</p>
+        	{%endif%}
+      </div>
+    </div>
+  </div>
+{%endfor%}
+</div>
+</body>
+</html>
